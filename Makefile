@@ -15,5 +15,5 @@ chapter ?= 1
 verse ?= 1
 run:
 	@cargo build
-	@./target/debug/text-insights -B $(book) -C $(chapter) -V $(verse)
+	@DB_HOST=localhost DB_USER=jonathanwhittle DB_DATABASE=texts ./target/debug/text-insights -B $(book) -C $(chapter) -V $(verse)
 
