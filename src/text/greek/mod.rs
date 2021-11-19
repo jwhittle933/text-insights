@@ -8,15 +8,11 @@ pub struct GreekText {
     book_id: i64
 }
 
-const QUERY: &str = "SELECT * FROM lxx WHERE book_id = $1 AND chapter = $2 AND verse = $3";
+const QUERY: &str = "SELECT * FROM lxx WHERE book_id = (SELECT id FROM books WHERE name = $1) AND chapter = $2 AND verse = $3";
 
 impl GreekText {
-    pub fn from(id: i64, text: String, book_id: i64) -> GreekText {
-        GreekText { id, text, book_id }
-    }
-
-    pub fn query(c: &mut Client, book: &Book, chapter: i32, verse: i32) -> Result<GreekText, Error> {
-        let q = c.query_one(&QUERY.to_owned(), &[&book.id, &chapter, &verse])?;
+    pub fn query(c: &mut Client, book: &String, chapter: i32, verse: i32) -> Result<GreekText, Error> {
+        let q = c.query_one(&QUERY.to_owned(), &[book, &chapter, &verse])?;
 
         let id: i64 = q.get("id");
         let text = q.get("text");

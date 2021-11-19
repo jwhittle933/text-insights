@@ -7,7 +7,7 @@ use unicode_segmentation::UnicodeSegmentation;
 use crate::book::Book;
 pub use vowels::is_vowel;
 
-const QUERY: &str = "SELECT * FROM mt WHERE book_id = $1 AND chapter = $2 AND verse = $3";
+const QUERY: &str = "SELECT * FROM mt WHERE book_id = (SELECT id FROM books WHERE name = $1) AND chapter = $2 AND verse = $3";
 
 #[derive(Debug)]
 pub struct HebrewText {
@@ -16,11 +16,8 @@ pub struct HebrewText {
 }
 
 impl HebrewText {
-    pub fn parse(id: i64, text: String) -> HebrewText {
-        HebrewText { id, text }
-    }
-    pub fn query(c: &mut Client, book: &Book, chapter: i32, verse: i32) -> Result<HebrewText, Error> {
-        let q = c.query_one(&QUERY.to_owned(), &[&book.id, &chapter, &verse])?;
+    pub fn query(c: &mut Client, book: &String, chapter: i32, verse: i32) -> Result<HebrewText, Error> {
+        let q = c.query_one(&QUERY.to_owned(), &[book, &chapter, &verse])?;
 
         let id: i64 = q.get("id");
         let text = q.get("text");
