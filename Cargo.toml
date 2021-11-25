@@ -2,7 +2,11 @@
 name = "text-insights"
 version = "0.1.0"
 authors = ["Jonathan Whittle <jonathan.m.whittle@gmail.com>"]
-edition = "2018"
+edition = "2021"
+
+[lib]
+name = "insights"
+path = "src/lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
@@ -10,4 +14,7 @@ structopt = "0.3"
 postgres = "0.19"
 unicode-segmentation = "0.1.2"
 envy = "0.4"
+dirs = "4.0.0"
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.71"
+voca_rs = "1.14.0"
