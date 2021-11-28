@@ -4,7 +4,6 @@ extern crate unicode_segmentation;
 
 use postgres::{Client, Error};
 use unicode_segmentation::UnicodeSegmentation;
-use crate::book::Book;
 pub use vowels::is_vowel;
 
 const QUERY: &str = "SELECT * FROM mt WHERE book_id = (SELECT id FROM books WHERE name = $1) AND chapter = $2 AND verse = $3";

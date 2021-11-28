@@ -1,5 +1,4 @@
 use postgres::{Client, Error};
-use crate::book::Book;
 
 #[derive(Debug)]
 pub struct GreekText {

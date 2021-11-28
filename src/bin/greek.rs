@@ -20,15 +20,16 @@ fn main() -> std::io::Result<()> {
     let mut greek = File::open(home.join(GREEK))?;
     let mut lsj = LSJ::parse_raw(&mut greek)?;
 
-    println!("Beginning Insert...");
-    for (k, v) in lsj.drain() {
-        voca_rs::strip::strip_tags(&v);
+    for (k, v) in lsj {
         client.execute(
-            Insert::new("lsj_temp", &["lex", "description"]).as_str(),
-            &[&k, &voca_rs::strip::strip_tags(&v)],
+            Insert::new("lsj_temp", &["lex", "description", "html"]).as_str(),
+            &[
+                &k,
+                &voca_rs::strip::strip_tags(&v),
+                &v,
+            ],
         );
     }
-
 
     Ok(())
 }

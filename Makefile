@@ -9,13 +9,10 @@ build:
 test:
 	cargo test
 
-book ?= Genesis
-chapter ?= 1
-verse ?= 1
+db_host ?= localhost
+db_user ?= jonathanwhittle
+db_database ?= texts
+bin ?= greek
 run:
-	@cargo build
-	@DB_HOST=localhost DB_USER=jonathanwhittle DB_DATABASE=texts ./target/debug/text-insights -B $(book) -C $(chapter) -V $(verse)
-
-greek:
-	@DB_HOST=localhost DB_USER=jonathanwhittle DB_DATABASE=texts cargo run --bin greek
+	@DB_HOST=$(db_host) DB_USER=$(db_user) DB_DATABASE=$(db_database) cargo run --bin $(bin)
 

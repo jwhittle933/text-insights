@@ -1,3 +1,6 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 pub const SCHEWA: &str = "\u{05B0}";
 pub const HATEF_SEGOL: &str= "\u{05B1}";
 pub const HATEF_PATAH: &str = "\u{05B2}";

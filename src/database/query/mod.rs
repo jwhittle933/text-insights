@@ -1,5 +1,3 @@
-use postgres::types::Kind::Range;
-
 pub struct Insert {}
 
 impl Insert {

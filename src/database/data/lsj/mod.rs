@@ -1,10 +1,7 @@
 use std::collections::HashMap;
 use std::fs::File;
-use std::hash::Hash;
 use std::io::Read;
-use std::vec::Drain;
 use serde_json;
-use serde_json::map::Keys;
 use serde_json::Result as JSONResult;
 
 #[derive(Debug)]
