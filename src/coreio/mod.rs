@@ -1,3 +1,5 @@
+pub mod json;
+
 use std::io::{Read, Seek, Write, Result, copy};
 
 pub trait Sized {

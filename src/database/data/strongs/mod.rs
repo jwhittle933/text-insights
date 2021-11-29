@@ -46,7 +46,7 @@ G489: {
 #[derive(Debug, Deserialize)]
 pub struct Greek {
     pub lemma: String,
-    pub derivation: Option<String>, // TODO: parse if missing
+    pub derivation: Option<String>,
     pub strongs_def: Option<String>,
     pub translit: String,
 }
