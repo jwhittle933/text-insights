@@ -1,10 +1,15 @@
-use insights::cli::{self, env::ENV};
-use insights::database::{self, data, query};
-use data::{lsj::LSJ};
-use query::Insert;
-
 use std::fs::File;
+
 use dirs;
+
+use insights::cli::env::ENV;
+use insights::database::{
+    self,
+    data::bdb::Hebrew,
+    query::{Insert, Select},
+};
+use insights::coreio;
+
 
 const HEBREW: &str = "lexica/heb/BDB/DictBDB.json";
 
@@ -17,8 +22,13 @@ fn main() -> std::io::Result<()> {
         .expect("could not get $HOME dir")
         .join("Development");
 
-    let mut hebrew = File::open(home.join(HEBREW))?;
-    let mut greek = File::open(home.join(HEBREW))?;
+    let entries = coreio::json::deserialize_file::<Vec<Hebrew>>(&mut File::open(HEBREW)?);
+    for entry in entries {
+        // TODO: select from strongs by the `top`
+        ///
+    }
 
+    println!("{}", Insert::new("ls_temp", &["test", "another"]));
+    println!("{}", Select::new("ls_temp", &["test", "another"]));
     Ok(())
 }

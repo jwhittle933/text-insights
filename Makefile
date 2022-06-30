@@ -9,6 +9,9 @@ build:
 test:
 	cargo test
 
+clean:
+	cargo clean
+
 db_host ?= localhost
 db_user ?= jonathanwhittle
 db_database ?= texts
