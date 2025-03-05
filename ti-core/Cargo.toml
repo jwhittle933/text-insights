@@ -1,0 +1,15 @@
+[package]
+name = "ti-core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow.workspace = true
+itertools = "0.14.0"
+image.workspace = true
+imageproc.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+simd-json.workspace = true
+fastembed.workspace = true
+walkdir = "2.5.0"

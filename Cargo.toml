@@ -4,17 +4,30 @@ version = "0.1.0"
 authors = ["Jonathan Whittle <jonathan.m.whittle@gmail.com>"]
 edition = "2021"
 
+[workspace]
+members = ["loader", "recog", "search", "ti-core"]
+
 [lib]
 name = "insights"
 path = "src/lib.rs"
 
-[dependencies]
-structopt = "0.3"
-postgres = "0.19"
-unicode-segmentation = "0.1.2"
-envy = "0.4"
+[workspace.dependencies]
+anyhow = "1.0.97"
 dirs = "4.0.0"
+envy = "0.4"
+fastembed = "4.6.0"
+glob = "0.3.0"
+image = "0.25.5"
+imageproc = "0.25.0"
+indicatif = "0.17.11"
+memap2 = "0.1.2"
+postgres = "0.19"
+qdrant-client = "1.13.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.71"
+simd-json = "0.14.3"
+structopt = "0.3"
+tokio = "1.43.0"
+unicode-segmentation = "0.1.2"
+uuid = { version = "1.15.1", features = ["v4"] }
 voca_rs = "1.14.0"
-glob = "0.3.0"
